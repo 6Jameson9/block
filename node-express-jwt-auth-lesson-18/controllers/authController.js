@@ -91,3 +91,18 @@ module.exports.logout_get = (req, res) => {
 module.exports.profile_get = (req, res) => {
   res.render('profile');
 }
+
+// Метод для обновления профиля пользователя
+module.exports.updateProfile = async (req, res) => {
+  try {
+    const { name, avatar, bio } = req.body;
+    const userId = req.user._id;
+
+    const updatedUser = await User.findByIdAndUpdate(userId, { name, avatar, bio }, { new: true });
+
+    res.json(updatedUser);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+}

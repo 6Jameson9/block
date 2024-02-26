@@ -4,10 +4,21 @@
 
 <h1 style="text-align: center;">Welcome,<%=user.email%></h1>
 
+<form action="/profile" method="POST">
+    <label for="avatar">Avatar:</label>
+    <input type="text" id="avatar" name="avatar" value="<%= user.avatar %>">
 
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="<%= user.name %>">
 
-
-
+    <label>Email:</label>
+    <p><%= user.email %></p>
+  
+    <label for="bio">Bio:</label>
+    <textarea id="bio" name="bio"><%= user.bio %></textarea>
+  
+    <button type="submit">Update Profile</button>
+</form>
 
 
 <%- include('partials/footer'); -%>
